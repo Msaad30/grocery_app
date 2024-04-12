@@ -68,7 +68,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         backgroundColor: greenColor
       ),
-
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -78,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: ListTile(
                 leading: CircleAvatar(
                   radius: 30,
-                  foregroundImage: NetworkImage("https://s.ndtvimg.com/images/entities/300/lionel-messi-90996.png"),
+                  foregroundImage: AssetImage("assets/images/blue_hair_avtar.png"),
                 ),
                 title: Text(
                   "Good Morning",
