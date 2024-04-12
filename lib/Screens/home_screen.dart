@@ -25,12 +25,12 @@ class HomeScreen extends StatefulWidget{
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String? name;
-@override
-  void initState() {
-    super.initState();
-    getUsename();
-  }
+
+  @override
+    void initState() {
+      super.initState();
+      getUsename();
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   "Good Morning",
                   style: TextStyle(fontSize: 15, color: Colors.grey),
                 ),
-                subtitle: Text(name.toString(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: "nunito-bold"),),
+                subtitle: Text(
+                  name.toString(),
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "nunito-bold"
+                  ),
+                ),
                 trailing: SizedBox(
                   height: 80,
                   width: 80,
@@ -490,9 +497,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  getUsename() async{
+  String? name;
+  Future getUsename() async{
     SharedPreferences pref =  await SharedPreferences.getInstance();
-  name = pref.getString("userName");
-
+    setState(() {
+      this.name = pref.getString("name");
+    });
   }
 }

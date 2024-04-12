@@ -19,8 +19,10 @@ class LoginScreen extends StatelessWidget{
     }
     else{
       SharedPreferences pref = await SharedPreferences.getInstance();
+
+      pref.setString("name", user.text.toString());
       pref.setBool("login", true);
-      pref.setString("userName", user.text.toString());
+      log(user.text.toString());
     }
   }
 
