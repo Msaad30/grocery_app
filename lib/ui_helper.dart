@@ -23,14 +23,13 @@ class UiHelper{
           keyboardType: kaybordTextInputType,
           style: TextStyle(
               fontSize: 17,
-              fontFamily: "GolosText-SemiBold"
           ),
           decoration: InputDecoration(
               label: Text(
                 lable,
                 style: TextStyle(
                   fontSize: 15,
-                  fontFamily: "GolosText-SemiBold",
+                  // fontFamily: "GolosText-SemiBold",
                   color: Colors.black,
                 ),
               ),
@@ -40,6 +39,55 @@ class UiHelper{
                   fontFamily: "GolosText-SemiBold"
               ),
               prefixIcon: icon,
+              border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: greenColor,
+                  )
+              ),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: greenColor,
+                  )
+              ),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: greenColor,
+                  )
+              )
+          ),
+        ),
+      ),
+    );
+  }
+
+  static customTextPasswordfields({required Widget icon, required String lable, required String hintText, TextEditingController? controller}){
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: SizedBox(
+        height: 60,
+        child: TextField(
+          controller: controller,
+          keyboardType: TextInputType.visiblePassword,
+          style: TextStyle(
+              fontSize: 17,
+              fontFamily: "GolosText-SemiBold"
+          ),
+          decoration: InputDecoration(
+              label: Text(
+                lable,
+                style: TextStyle(
+                  fontSize: 15,
+                  // fontFamily: "GolosText-SemiBold",
+                  color: Colors.black,
+                ),
+              ),
+              hintText: hintText,
+              hintStyle: TextStyle(
+                  fontSize: 15,
+                  fontFamily: "GolosText-SemiBold"
+              ),
+              prefixIcon: icon,
+              suffixIcon: IconButton(onPressed: (){} , icon: icon),
               border: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: greenColor,

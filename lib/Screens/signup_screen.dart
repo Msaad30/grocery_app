@@ -40,35 +40,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(height: 40,),
               UiHelper.customTextfields(
                 icon: Icon(Icons.person),
-                lable: "USERNAME",
+                lable: "username",
                 hintText: "Create new username",
                 kaybordTextInputType: TextInputType.text
               ),
               SizedBox(height: 20,),
               UiHelper.customTextfields(
                   icon: Icon(Icons.email),
-                  lable: "EMAIL",
+                  lable: "email",
                   hintText: "Enter email account",
                   kaybordTextInputType: TextInputType.emailAddress
               ),
               SizedBox(height: 20,),
               UiHelper.customTextfields(
                   icon: Icon(Icons.phone),
-                  lable: "PHONE",
+                  lable: "phone",
                   hintText: "Enter your number",
                   kaybordTextInputType: TextInputType.phone
               ),
               SizedBox(height: 20,),
               UiHelper.customTextfields(
                   icon: Icon(Icons.password),
-                  lable: "PASSWORD",
+                  lable: "password",
                   hintText: "Create your password",
                   kaybordTextInputType: TextInputType.text
               ),
               SizedBox(height: 20,),
               UiHelper.customTextfields(
                   icon: Icon(Icons.password),
-                  lable: "CONFIRM PASSWORD",
+                  lable: "confirm password",
                   hintText: "Re-enter your password",
                   kaybordTextInputType: TextInputType.visiblePassword
               ),
@@ -93,7 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   TextButton(
                       onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUpScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
                       },
                       child: Text(
                         "Login",

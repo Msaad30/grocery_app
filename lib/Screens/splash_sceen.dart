@@ -50,14 +50,13 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
-              radius: 60,
+              radius: 80,
               foregroundImage: AssetImage(appLogo),
               backgroundColor: Colors.white,
             )
           ]
         ),
       ),
-      backgroundColor: CupertinoColors.activeGreen,
       // Color.fromARGB(255, 34, 171, 72),
     );
   }

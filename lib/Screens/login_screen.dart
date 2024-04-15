@@ -12,18 +12,38 @@ import '../ui_helper.dart';
 class LoginScreen extends StatelessWidget{
 
   TextEditingController user = TextEditingController();
+  TextEditingController pass = TextEditingController();
 
-  saveLogin() async{
-    if(user==null){
+  saveLogin(BuildContext context) async{
+    if(user.text.toString() == null || pass.text.toString() == null){
+      return showDialog(
+          barrierDismissible:false,
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+            actions: [
+              ElevatedButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  child: Text("ok")
+              ),
+            ],
+
+              title: Text('Error'),
+              content: Text("Please enter name and password"),
+            );
+          });
       log("Please Enter UserName");
     }
     else{
       SharedPreferences pref = await SharedPreferences.getInstance();
-
       pref.setString("name", user.text.toString());
       pref.setBool("login", true);
       log(user.text.toString());
-    }
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context)=>OnboardingScreen(userName: user.text.toString())));
+     }
   }
 
   @override
@@ -55,13 +75,18 @@ class LoginScreen extends StatelessWidget{
               SizedBox(height: 60,),
               UiHelper.customTextfields(
                   icon: Icon(Icons.person),
-                  lable: "USERNAME",
+                  lable: "username",
                   hintText: "Enter username",
                   kaybordTextInputType: TextInputType.name,
                   controller: user
               ),
               SizedBox(height: 20,),
-              UiHelper.customTextfields(icon: Icon(Icons.lock), lable: "PASSWORD", hintText: "Enter password", kaybordTextInputType: TextInputType.number),
+              UiHelper.customTextfields(
+                  icon: Icon(Icons.lock),
+                  lable: "password",
+                  hintText: "Enter password",
+                  kaybordTextInputType: TextInputType.visiblePassword
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -86,8 +111,7 @@ class LoginScreen extends StatelessWidget{
               SizedBox(height: 40,),
               UiHelper.customButton(
                 () async {
-                  saveLogin();
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>OnboardingScreen(userName: user.text.toString())));
+                  saveLogin(context);
                 },
                 width: 300,
                 height: 50,

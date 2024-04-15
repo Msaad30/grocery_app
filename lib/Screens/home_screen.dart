@@ -56,7 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
-              onPressed: () {
+              onPressed: () async {
+                SharedPreferences pref = await SharedPreferences.getInstance();
+                pref.setBool("login", false);
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context)=>LoginScreen()));
               },

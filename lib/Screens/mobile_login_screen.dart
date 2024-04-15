@@ -6,10 +6,19 @@ import 'package:grocery_app/ui_helper.dart';
 import '../const_names.dart';
 import 'home_screen.dart';
 
-class MobileLoginScreen extends StatelessWidget{
+class MobileLoginScreen extends StatefulWidget{
+  @override
+  State<MobileLoginScreen> createState() => _MobileLoginScreenState();
+}
+
+class _MobileLoginScreenState extends State<MobileLoginScreen> {
+
+  TextEditingController mobileNum = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -19,7 +28,7 @@ class MobileLoginScreen extends StatelessWidget{
             const SizedBox(height: 10),
             UiHelper.customStartingTextRegular(text: "We will send you a verification code"),
             const SizedBox(height: 20),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 85),
               child: Row(
                 children: [
@@ -35,6 +44,7 @@ class MobileLoginScreen extends StatelessWidget{
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
+                      controller: mobileNum,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         hintText: "000 000 0000",
@@ -52,7 +62,7 @@ class MobileLoginScreen extends StatelessWidget{
             ),
             const SizedBox(height: 30),
             UiHelper.customButton(() {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+              dialog(context);
             }, width: 250, height: 50, text: "Continue", fontsize: 20),
             const SizedBox(height: 10),
             // UiHelper.customStartingTextRegular(text: "buy clicking continue you are aggreeing\to our turms of use"),
@@ -74,5 +84,31 @@ class MobileLoginScreen extends StatelessWidget{
         ),
       ),
     );
+  }
+
+  void dialog(BuildContext context) async {
+
+    if(mobileNum.text.toString() == ""){
+      return showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Error"),
+              content: Text("Please enter mobile number"),
+              actions: [
+                TextButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                child: Text("Ok"),
+                )
+              ],
+            );
+          });
+    }
+    else{
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+    }
   }
 }
